@@ -4,11 +4,25 @@ import { TEInput, TERipple } from "tw-elements-react";
 import girl from "../assets/refereesignupgirl.png"
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import axios from 'axios'
+import { API_DETAILS } from '../config';
+
 function RefreeSignUp() {
 
   const{register,handleSubmit , formState : {errors}, } = useForm()
 
-  const data = val => console.log(val);
+  const Submitdata = val => {
+    axios({
+      method : 'post' , 
+      url : `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_DETAILS.key}`,
+      data : {
+        email: val.email,
+        password :val.password,
+        returnSecureToken : true
+      }
+    }).then(res => console.log(res.data , 'User registered'))
+    .catch(err => console.log('Error:' , err))
+  }
 
   return (
     <>
@@ -29,7 +43,7 @@ function RefreeSignUp() {
 
           {/* <!-- Right column container --> */}
           <div className="mb-12 md:mb-0 md:w-8/12 lg:w-5/12 xl:w-5/12">
-            <form  onSubmit={handleSubmit(data) }>
+            <form  onSubmit={handleSubmit(Submitdata) }>
 
 
             <TEInput
