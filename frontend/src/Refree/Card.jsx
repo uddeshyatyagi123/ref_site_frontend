@@ -3,7 +3,7 @@ import { TEInput } from 'tw-elements-react'
 
 function Card() {
   return (
-    <div className='block max-w-sm p-6 m-4 bg-white border border-gray-200 rounded-lg shadow flex-col space-y-1'>
+    <div className='block max-w-sm p-6 m-4 bg-blue-300 border border-gray-200 rounded-lg shadow flex-col space-y-1'>
         <div className='border-2 rounded-md p-1'>company name</div>
         <div className='border-2 rounded-md p-1'>post in company</div>
         <div className='border-2 rounded-md p-1'>income</div>
