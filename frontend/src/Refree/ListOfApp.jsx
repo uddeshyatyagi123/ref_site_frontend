@@ -1,8 +1,34 @@
 import React from 'react'
+import Card from './Card'
 
 function ListOfApp() {
   return (
-    <div>ListOfApp</div>
+    <ul className='flex'>
+        <li>
+
+        <Card/>
+        </li>
+        <li>
+
+        <Card/>
+        </li>
+        <li>
+
+        <Card/>
+        </li>
+        <li>
+
+        <Card/>
+        </li>
+        <li>
+
+        <Card/>
+        </li>
+        <li>
+
+        <Card/>
+        </li>
+    </ul>
   )
 }
 

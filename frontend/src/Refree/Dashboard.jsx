@@ -4,7 +4,7 @@ import ListOfApp from './ListOfApp';
 import UploadProof from './UploadProof';
 
 function Dashboard() {
-  const [selectedComponent, setSelectedComponent] = useState(null);
+  const [selectedComponent, setSelectedComponent] = useState('ListOfApp');
 
   const renderComponent = () => {
     switch (selectedComponent) {
@@ -22,12 +22,27 @@ function Dashboard() {
   return (
     <>
       <div className='flex'>
-        <div className='flex-col h-screen  bg-yellow-400'>
-          <button onClick={() => setSelectedComponent('ListOfApp')}>List Of Applicants</button>
-          <button onClick={() => setSelectedComponent('UploadProof')}>Upload Proof</button>
-          <button onClick={() => setSelectedComponent('Profile')}>Profile</button>
+        <div className='flex-col h-screen  bg-slate-600 space-y-4 px-7 py-4'>
+          <div
+            className={`bg-blue-500 text-white p-3 rounded ${selectedComponent === 'ListOfApp' ? 'selected' : ''}`}
+            onClick={() => setSelectedComponent('ListOfApp')}
+          >
+            List Of Applicants
+          </div>
+          <div
+            className={`bg-blue-500 text-white p-3 rounded ${selectedComponent === 'UploadProof' ? 'selected' : ''}`}
+            onClick={() => setSelectedComponent('UploadProof')}
+          >
+            Upload Proof
+          </div>
+          <div
+            className={`bg-blue-500 text-white p-3 rounded ${selectedComponent === 'Profile' ? 'selected' : ''}`}
+            onClick={() => setSelectedComponent('Profile')}
+          >
+            Profile
+          </div>
         </div>
-        <div>
+        <div >
           {/* Render the selected component */}
           {renderComponent()}
         </div>
