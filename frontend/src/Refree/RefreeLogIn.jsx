@@ -2,6 +2,7 @@ import React from 'react'
 import { TEInput, TERipple } from "tw-elements-react";
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 
 function RefreeLogIn() {
@@ -9,6 +10,22 @@ function RefreeLogIn() {
     const{register,handleSubmit , formState : {errors}, } = useForm()
 
     const data = value => console.log('data' ,value);
+
+    const Submitdata = (val) => {
+      // const formData = getValues();
+      // console.log('Form Data for submission:', formData);
+      console.log('val', val)
+       axios({
+        method : 'post' , 
+        url : `https://referral-site.onrender.com/api/refreelogin`,
+        data : {
+          username : val.username,
+          password :val.password,
+          rememberMe:"true"
+        }
+      }).then(res => console.log(res.data , 'User registered'))
+      .catch(err => console.log('Error:' , err))
+    }
 
   return (
     <>
@@ -29,7 +46,7 @@ function RefreeLogIn() {
 
           {/* <!-- Right column container --> */}
           <div className="mb-12 md:mb-0 md:w-8/12 lg:w-5/12 xl:w-5/12">
-            <form  onSubmit={handleSubmit(data) }>
+            <form  onSubmit={handleSubmit(Submitdata) }>
               {/* <!--Sign in section--> */}
               <div className="flex flex-row items-center justify-center lg:justify-start">
                 <p className="mb-0 mr-4 text-lg">Sign in with</p>
@@ -39,14 +56,13 @@ function RefreeLogIn() {
 
               {/* <!-- Email input --> */}
               <TEInput
-                {...register('email' ,{required: {value:true , message : 'enter company email'} , 
-                  pattern: /^[a-zA-Z0-9+_.-]+@[a-zA-Z\.]+[a-zA-Z]+$/ , message:"Enter a valid email" })}
-                type="email"
-                label="Company Email verification"
+                {...register('username' , {required: {value:true , message : 'Enter your Username'} })}
+                type="username"
+                label="User Name"
                 size="lg"
                 className="mb-4"
               ></TEInput>
-                            {errors.email && <p className='text-red-500 my-0'>{errors.email.message}</p>}
+                            {errors.username && <p className='text-red-500 my-0'>{errors.username.message}</p>}
 
               {/* <!--Password input--> */}
               <TEInput

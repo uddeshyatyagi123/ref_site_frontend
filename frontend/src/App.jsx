@@ -6,6 +6,7 @@ import RefreeSignUp from './Refree/RefreeSignUp'
 import { createBrowserRouter , RouterProvider  } from 'react-router-dom'
 import RefreeLogIn from './Refree/RefreeLogIn'
 import Dashboard from './Refree/Dashboard'
+import StudentSignup from './Student/StudentSignup'
 
 
 const router = createBrowserRouter([
@@ -14,16 +15,20 @@ const router = createBrowserRouter([
     element : '',
     children:
     [{
-      path : 'signup' ,
+      path : 'refreesignup' ,
       element : <RefreeSignUp/>
     },
     {
-      path : 'login',
+      path : 'refreelogin',
       element : <RefreeLogIn/>,
     },
     {
-      path : 'dashboard',
+      path : 'rafreedashboard',
       element : <Dashboard/>,
+    },
+    {
+      path: 'studentsignup',
+      element: <StudentSignup/>
     }
   ]
   }
