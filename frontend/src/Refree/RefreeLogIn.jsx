@@ -1,12 +1,15 @@
 import React from 'react'
 import { TEInput, TERipple } from "tw-elements-react";
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+import useAuth from '../PrivateRoute/useAuth';
 
 function RefreeLogIn() {
+  const history = useNavigate();
 
+
+  const { isAuthenticated, setIsAuthenticated, loading, setLoading } = useAuth();
     const{register,handleSubmit , formState : {errors}, } = useForm()
 
     const data = value => console.log('data' ,value);
@@ -15,16 +18,24 @@ function RefreeLogIn() {
       // const formData = getValues();
       // console.log('Form Data for submission:', formData);
       console.log('val', val)
-       axios({
-        method : 'post' , 
-        url : `https://referral-site.onrender.com/api/refreelogin`,
-        data : {
-          username : val.username,
-          password :val.password,
-          rememberMe:"true"
-        }
-      }).then(res => console.log(res.data , 'User registered'))
-      .catch(err => console.log('Error:' , err))
+      setLoading(true);
+      setTimeout(() => {
+        axios({
+          method : 'post' , 
+          url : `https://referral-site.onrender.com/api/refreelogin`,
+          data : {
+            username : val.username,
+            password :val.password,
+            rememberMe:"true"
+          }
+        }).then(res => console.log(res.data , 'User registered'))
+        .catch(err => console.log('Error:' , err))
+
+        setIsAuthenticated(true);
+        setLoading(false);
+        history('/refree/refreelogin');
+      }, 1500);
+
     }
 
   return (
