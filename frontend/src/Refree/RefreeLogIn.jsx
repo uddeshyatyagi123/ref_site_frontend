@@ -1,7 +1,7 @@
 import React from 'react'
 import { TEInput, TERipple } from "tw-elements-react";
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import useAuth from '../PrivateRoute/useAuth';
 
@@ -19,7 +19,7 @@ function RefreeLogIn() {
       // console.log('Form Data for submission:', formData);
       console.log('val', val)
       setLoading(true);
-      setTimeout(() => {
+
         axios({
           method : 'post' , 
           url : `https://referral-site.onrender.com/api/refreelogin`,
@@ -33,8 +33,10 @@ function RefreeLogIn() {
 
         setIsAuthenticated(true);
         setLoading(false);
-        // history('/refree/refreelogin');
-      }, 1500);
+        history('/refree/refreelogin');
+        console.log('hello world')
+
+
 
     }
 
@@ -108,7 +110,6 @@ function RefreeLogIn() {
 
               {/* <!-- Login button --> */}
               <div className="text-center lg:text-left">
-                <Link to = '/refree/refreedashboard'>
                 <TERipple rippleColor="light">
                   <button
                     type="submit"
@@ -118,7 +119,6 @@ function RefreeLogIn() {
                     Login
                   </button>
                 </TERipple>
-                </Link>
 
 {/* <input type='submit' value='login'/> */}
 

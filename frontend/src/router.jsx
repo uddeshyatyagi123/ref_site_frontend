@@ -20,8 +20,8 @@ const router = createBrowserRouter(
         </Route>
         <Route path = 'student' element = ''>
             <Route path = 'studentsignup' element = {<StudentSignup/>}/>
-            <Route path = 'refreelogin' element = {<StudentLogin/>}/>
-            <Route path = "refreedashboard" element = {<StudentDashboard/>}/>
+            <Route path = 'studentlogin' element = {<StudentLogin/>}/>
+            <Route path = "studentdashboard" element = {<StudentDashboard/>}/>
         </Route>
         </Route>
     )
