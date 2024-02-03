@@ -1,28 +1,58 @@
-import React from 'react'
+import React, { useState } from 'react'
 // import './RefreeSignUp.css'
 import { TEInput, TERipple } from "tw-elements-react";
 import girl from "../assets/refereesignupgirl.png"
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
-import { API_DETAILS } from '../config';
+// import { API_DETAILS } from '../config';
 
 function RefreeSignUp() {
 
-  const{register,handleSubmit , formState : {errors}, } = useForm()
+  const[email,setEmail]  = useState('')
+  const[userName,setUserName]  = useState('')
 
-  const Submitdata = val => {
-    axios({
+  const{register,handleSubmit , formState : {errors}, getValues } = useForm()
+
+  const Submitdata = (val) => {
+    // const formData = getValues();
+    // console.log('Form Data for submission:', formData);
+    console.log('val', val)
+     axios({
       method : 'post' , 
-      url : `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_DETAILS.key}`,
+      url : `https://referral-site.onrender.com/api/refreeverify`,
       data : {
+        username : val.username,
         email: val.email,
         password :val.password,
-        returnSecureToken : true
+        otp : val.otp,
+        company : val.companyname,
+        name: val.name
       }
     }).then(res => console.log(res.data , 'User registered'))
     .catch(err => console.log('Error:' , err))
   }
+
+  const handleUserNameChange = (event) => {
+    setUserName(event.target.value);
+  };
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  };
+
+  const getOtp = () => {
+    // const formData = getValues();
+    // console.log('Form Data before submission:', formData);
+    axios({
+      method : 'post',
+      url : `https://referral-site.onrender.com/api/refreeregister`,
+      data : {
+        username : userName,
+        email : email
+      }
+    }).then(res => console.log(res.data , 'otp sended'))
+    .catch(err => console.log('OTPERROR:' ,err ))
+  };
 
   return (
     <>
@@ -55,6 +85,18 @@ function RefreeSignUp() {
               ></TEInput>
                             {errors.name && <p className='text-red-500 my-0'>{errors.name.message}</p>}
 
+                            
+            <TEInput
+                {...register('username' , {required: {value:true , message : 'Enter your Username'} })}
+                value = {userName}
+                onChange={handleUserNameChange}
+                type="username"
+                label="User Name"
+                size="lg"
+                className="mb-4"
+              ></TEInput>
+                            {errors.username && <p className='text-red-500 my-0'>{errors.username.message}</p>}
+
             <TEInput
                 {...register('companyname' , {required: {value:true , message : 'Company name is required'} })}
                 type="companyname"
@@ -77,6 +119,8 @@ function RefreeSignUp() {
               <TEInput
                 {...register('email' ,{required: {value:true , message : 'enter company email'} , 
                   pattern: /^[a-zA-Z0-9+_.-]+@[a-zA-Z\.]+[a-zA-Z]+$/ , message:"Enter a valid email" })}
+                  value = {email}
+                  onChange={handleEmailChange}
                 type="email"
                 label="Company Email verification"
                 size="lg"
@@ -108,7 +152,7 @@ function RefreeSignUp() {
 
               <div className="mb-6 flex items-center justify-between">
 
- <button
+ <button onClick={getOtp}
         type="button"
         className="inline-block rounded-full bg-primary-100 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:bg-primary-accent-100 focus:bg-primary-accent-100 focus:outline-none focus:ring-0 active:bg-primary-accent-200"
       >

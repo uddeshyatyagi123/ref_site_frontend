@@ -1,14 +1,44 @@
 import React from 'react'
 import { TEInput, TERipple } from "tw-elements-react";
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
-
+import { Link, Navigate, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import useAuth from '../PrivateRoute/useAuth';
 
 function RefreeLogIn() {
+  const history = useNavigate();
 
+
+  const { isAuthenticated, setIsAuthenticated, loading, setLoading } = useAuth();
     const{register,handleSubmit , formState : {errors}, } = useForm()
 
     const data = value => console.log('data' ,value);
+
+    const Submitdata = (val) => {
+      // const formData = getValues();
+      // console.log('Form Data for submission:', formData);
+      console.log('val', val)
+      setLoading(true);
+
+        axios({
+          method : 'post' , 
+          url : `https://referral-site.onrender.com/api/refreelogin`,
+          data : {
+            username : val.username,
+            password :val.password,
+            rememberMe:"true"
+          }
+        }).then(res => console.log(res.data , 'User registered'))
+        .catch(err => console.log('Error:' , err))
+
+        setIsAuthenticated(true);
+        setLoading(false);
+        history('/refree/refreelogin');
+        console.log('hello world')
+
+
+
+    }
 
   return (
     <>
@@ -29,7 +59,7 @@ function RefreeLogIn() {
 
           {/* <!-- Right column container --> */}
           <div className="mb-12 md:mb-0 md:w-8/12 lg:w-5/12 xl:w-5/12">
-            <form  onSubmit={handleSubmit(data) }>
+            <form  onSubmit={handleSubmit(Submitdata) }>
               {/* <!--Sign in section--> */}
               <div className="flex flex-row items-center justify-center lg:justify-start">
                 <p className="mb-0 mr-4 text-lg">Sign in with</p>
@@ -39,14 +69,13 @@ function RefreeLogIn() {
 
               {/* <!-- Email input --> */}
               <TEInput
-                {...register('email' ,{required: {value:true , message : 'enter company email'} , 
-                  pattern: /^[a-zA-Z0-9+_.-]+@[a-zA-Z\.]+[a-zA-Z]+$/ , message:"Enter a valid email" })}
-                type="email"
-                label="Company Email verification"
+                {...register('username' , {required: {value:true , message : 'Enter your Username'} })}
+                type="username"
+                label="User Name"
                 size="lg"
                 className="mb-4"
               ></TEInput>
-                            {errors.email && <p className='text-red-500 my-0'>{errors.email.message}</p>}
+                            {errors.username && <p className='text-red-500 my-0'>{errors.username.message}</p>}
 
               {/* <!--Password input--> */}
               <TEInput
@@ -81,16 +110,17 @@ function RefreeLogIn() {
 
               {/* <!-- Login button --> */}
               <div className="text-center lg:text-left">
-                {/* <TERipple rippleColor="light">
+                <TERipple rippleColor="light">
                   <button
-                    type="button"
+                    type="submit"
+                    
                     className="inline-block rounded bg-primary px-7 pb-2.5 pt-3 text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
                   >
                     Login
                   </button>
-                </TERipple> */}
+                </TERipple>
 
-<input type='submit' value='login'/>
+{/* <input type='submit' value='login'/> */}
 
 
                 {/* <!-- Register link --> */}
