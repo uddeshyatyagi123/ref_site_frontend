@@ -33,7 +33,7 @@ function RefreeLogIn() {
 
         setIsAuthenticated(true);
         setLoading(false);
-        history('/refree/refreelogin');
+        // history('/refree/refreelogin');
       }, 1500);
 
     }
@@ -108,16 +108,19 @@ function RefreeLogIn() {
 
               {/* <!-- Login button --> */}
               <div className="text-center lg:text-left">
-                {/* <TERipple rippleColor="light">
+                <Link to = '/refree/refreedashboard'>
+                <TERipple rippleColor="light">
                   <button
-                    type="button"
+                    type="submit"
+                    
                     className="inline-block rounded bg-primary px-7 pb-2.5 pt-3 text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
                   >
                     Login
                   </button>
-                </TERipple> */}
+                </TERipple>
+                </Link>
 
-<input type='submit' value='login'/>
+{/* <input type='submit' value='login'/> */}
 
 
                 {/* <!-- Register link --> */}
