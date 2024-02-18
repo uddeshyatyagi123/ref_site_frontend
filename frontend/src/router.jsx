@@ -6,7 +6,9 @@ import Dashboard from './Refree/Dashboard'
 import StudentSignup from './Student/StudentSignup'
 import StudentLogin from './Student/StudentLogin'
 import StudentDashboard from './Student/StudentDashboard'
-import PrivateRoutes from './PrivateRoute/PrivateRoutes '
+// import PrivateRoutes from './PrivateRoute/PrivateRoutes '
+import StudentPrivateRoute from './StudentPrivateRoute/StudentPrivateRoute'
+import PrivateRoutes from './PrivateRoute/PrivateRoutes'
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -21,7 +23,9 @@ const router = createBrowserRouter(
         <Route path = 'student' element = ''>
             <Route path = 'studentsignup' element = {<StudentSignup/>}/>
             <Route path = 'studentlogin' element = {<StudentLogin/>}/>
+            <Route element = {<StudentPrivateRoute/>}>
             <Route path = "studentdashboard" element = {<StudentDashboard/>}/>
+            </Route>
         </Route>
         </Route>
     )

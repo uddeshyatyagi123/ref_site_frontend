@@ -1,12 +1,12 @@
 import React from 'react'
 import { TEInput, TERipple } from "tw-elements-react";
 import { useForm } from 'react-hook-form';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import useAuth from '../PrivateRoute/useAuth';
 
 function RefreeLogIn() {
-  const history = useNavigate();
+  const navigate = useNavigate();
 
 
   const { isAuthenticated, setIsAuthenticated, loading, setLoading } = useAuth();
@@ -19,22 +19,24 @@ function RefreeLogIn() {
       // console.log('Form Data for submission:', formData);
       console.log('val', val)
       setLoading(true);
-
+        
         axios({
           method : 'post' , 
-          url : `https://referral-site.onrender.com/api/refreelogin`,
+          url : `https://referral-site.onrender.com/api/referrerlogin`,
           data : {
             username : val.username,
             password :val.password,
             rememberMe:"true"
           }
-        }).then(res => console.log(res.data , 'User registered'))
-        .catch(err => console.log('Error:' , err))
-
+        }).then(res => {console.log(res.data , 'User registered');
         setIsAuthenticated(true);
         setLoading(false);
-        history('/refree/refreelogin');
-        console.log('hello world')
+        // navigate('/refree/refreedashboard');
+        console.log('hello world')   
+      })
+        .catch(err => console.log('Error:' , err))
+
+
 
 
 
@@ -43,6 +45,7 @@ function RefreeLogIn() {
   return (
     <>
     {console.log( 'errors', errors)}
+    {console.log(isAuthenticated)}
 
 
        <section className="h-screen">
@@ -110,6 +113,7 @@ function RefreeLogIn() {
 
               {/* <!-- Login button --> */}
               <div className="text-center lg:text-left">
+                {/* <Link to = '/refree/refreedashboard'> */}
                 <TERipple rippleColor="light">
                   <button
                     type="submit"
@@ -119,6 +123,7 @@ function RefreeLogIn() {
                     Login
                   </button>
                 </TERipple>
+                {/* </Link> */}
 
 {/* <input type='submit' value='login'/> */}
 
@@ -127,11 +132,15 @@ function RefreeLogIn() {
                 <p className="mb-0 mt-2 pt-1 text-sm font-semibold">
                   Don't have an account?{" "}
                   <Link
-                    to="/signup"
+                    to="/refree/refreesignup"
                     className="text-danger transition duration-150 ease-in-out hover:text-danger-600 focus:text-danger-600 active:text-danger-700"
                   >
                     Register
+                  </Link><br/>
+                  <Link to = '/refree/refreedashboard'>
+                    dashboard
                   </Link>
+                  
                 </p>
               </div>
             </form>
@@ -139,6 +148,7 @@ function RefreeLogIn() {
         </div>
       </div>
     </section>
+    
     </>
   )
 }
