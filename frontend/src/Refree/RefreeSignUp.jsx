@@ -20,7 +20,7 @@ function RefreeSignUp() {
     console.log('val', val)
      axios({
       method : 'post' , 
-      url : `https://referral-site.onrender.com/api/refreeverify`,
+      url : `https://referral-site.onrender.com/api/referrerverify`,
       data : {
         username : val.username,
         email: val.email,
@@ -45,7 +45,7 @@ function RefreeSignUp() {
     // console.log('Form Data before submission:', formData);
     axios({
       method : 'post',
-      url : `https://referral-site.onrender.com/api/refreeregister`,
+      url : `https://referral-site.onrender.com/api/referrerregister`,
       data : {
         username : userName,
         email : email
@@ -180,7 +180,7 @@ function RefreeSignUp() {
                 <p className="mb-0 mt-2 pt-1 text-sm font-semibold">
                   Have an account?{" "}
                   <Link
-                    to="/login"
+                    to="/refree/refreelogin"
                     className="text-danger transition duration-150 ease-in-out hover:text-danger-600 focus:text-danger-600 active:text-danger-700"
                   >
                     Login

@@ -1,10 +1,28 @@
 import React, { useState } from 'react'
 import Refrel from './Refrel';
 import ProfileUpdate from './ProfileUpdate';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 function StudentDashboard() {
 
+  var username = localStorage.getItem('username');
+
     const [selectedComponent, setSelectedComponent] = useState('refrel');
+
+    axios({
+      method : 'GET' , 
+      url : `https://https://referral-site.onrender.com/api/referrals`,
+
+    })
+    .then(response => {
+      // Handle successful response
+      console.log('Data from API:', response.data);
+    })
+    .catch(error => {
+      // Handle error
+      console.error('Error fetching data:', error);
+    })
 
     const renderComponent = () => {
       switch (selectedComponent) {
@@ -21,6 +39,7 @@ function StudentDashboard() {
     <>
       <div style={{backgroundColor: '#7FC7D9'}} className='flex h-screen '>
         <div  style={{backgroundColor: '#365486'}} className=' relative flex flex-col bg-clip-border   text-gray-700 h-screen w-full max-w-[20rem]  space-y-4 px-7 py-4'>
+    <div>{username}</div>
           <div 
             style={{backgroundColor:'#F0ECE5'}}
             className={`bg-blue-500 cursor-pointer text-black p-3 rounded ${selectedComponent === 'refrel' ? 'selected' : ''}`}
@@ -42,7 +61,7 @@ function StudentDashboard() {
           {renderComponent()}
         </div>
       </div>
-    
+
     </>
   )
 }

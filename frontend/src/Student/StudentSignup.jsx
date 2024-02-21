@@ -38,34 +38,34 @@ function StudentSignup() {
         // const formData = getValues();
         // console.log('Form Data for submission:', formData);
         console.log('val', val)
-    //      axios({
-    //       method : 'post' , 
-    //       url : `https://referral-site.onrender.com/api/studentverify`,
-    //       data : {
-    //         username : val.username,
-    //         email: val.email,
-    //         password :val.password,
-    //         otp : val.otp,
-    //         degree : val.degree,
-    //         name: val.name
-    //       }
-    //     }).then(res => console.log(res.data , 'User registered'))
-    //     .catch(err => console.log('Error:' , err))
+         axios({
+          method : 'post' , 
+          url : `https://referral-site.onrender.com/api/studentverify`,
+          data : {
+            username : val.username,
+            email: val.email,
+            password :val.password,
+            otp : val.otp,
+            degree : val.degree,
+            name: val.name
+          }
+        }).then(res => console.log(res.data , 'User registered'))
+        .catch(err => console.log('Error:' , err))
 
-    try{
+//     try{
 
-        const res = await axios.post(`https://referral-site.onrender.com/api/studentverify`,
-        JSON.stringify(
-            {username : val.username,
-email: val.email,
-password :val.password,
-otp : val.otp,
-degree : val.degree,
-name: val.name}
-        )
-        )
-        console.log(response.data)
-    }catch(err) { console.log('axioserr' , err)} 
+//         const res = await axios.post(`https://referral-site.onrender.com/api/studentverify`,
+//         JSON.stringify(
+//             {username : val.username,
+// email: val.email,
+// password :val.password,
+// otp : val.otp,
+// degree : val.degree,
+// name: val.name}
+//         )
+//         )
+//         console.log(response.data)
+//     }catch(err) { console.log('axioserr' , err)} 
 
       }
 
@@ -187,7 +187,7 @@ name: val.name}
                    <p className="mb-0 mt-2 pt-1 text-sm font-semibold">
                      Have an account?{" "}
                      <Link
-                       to="/login"
+                       to="/student/studentlogin"
                        className="text-danger transition duration-150 ease-in-out hover:text-danger-600 focus:text-danger-600 active:text-danger-700"
                      >
                        Login

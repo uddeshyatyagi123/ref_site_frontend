@@ -3,8 +3,6 @@ import useAuth from './useAuth';
 const PrivateRoutes = () => {
   const { isAuthenticated } = useAuth();
 
-      const outlet = useOutlet()
-      const navigate = useNavigate() 
   
   return (
     
