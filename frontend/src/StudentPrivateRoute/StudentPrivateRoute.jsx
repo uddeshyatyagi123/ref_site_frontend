@@ -6,7 +6,7 @@ const StudentPrivateRoute = () => {
   
   return (
     
-    isAuthenticatedStudent ? <Outlet/> : <Navigate to = '/refree/refreelogin'/>
+    isAuthenticatedStudent ? <Outlet/> : <Navigate to = '/student/studentlogin'/>
     
       )
     }

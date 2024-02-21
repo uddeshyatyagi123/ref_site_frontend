@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 const StudentUseAuth = () => {
-  const [isAuthenticatedStudent, setIsAuthenticatedStudent] = useState(true);
+  const [isAuthenticatedStudent, setIsAuthenticatedStudent] = useState(false);
   const [loadingStudent, setLoadingStudent] = useState(false);
 
   // useEffect(() => {

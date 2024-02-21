@@ -5,11 +5,13 @@ const useAuth = () => {
   const [loading, setLoading] = useState(false);
 
   // useEffect(() => {
-  //   const token = localStorage.getItem('token');
+  //   const token = localStorage.getItem('username');
   //   if (token) {
   //     setIsAuthenticated(true);
   //   }
   // }, []);
+
+  
 
   return { isAuthenticated, setIsAuthenticated, loading, setLoading };
 };

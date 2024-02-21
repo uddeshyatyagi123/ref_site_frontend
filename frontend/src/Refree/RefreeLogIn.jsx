@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { TEInput, TERipple } from "tw-elements-react";
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
@@ -28,24 +28,30 @@ function RefreeLogIn() {
             password :val.password,
             rememberMe:"true"
           }
+        },{
+          withCredentials : true 
         }).then(res => {console.log(res.data , 'User registered');
         setIsAuthenticated(true);
         setLoading(false);
+        localStorage.clear();
+        localStorage.setItem('username',val.username)
+
         // navigate('/refree/refreedashboard');
         console.log('hello world')   
       })
         .catch(err => console.log('Error:' , err))
 
-
-
-
-
+        useEffect(() => {
+          if (isAuthenticated) {
+            navigate('/refree/refreedashboard');
+          }
+        }, [isAuthenticated, navigate]);
     }
 
   return (
     <>
     {console.log( 'errors', errors)}
-    {console.log(isAuthenticated)}
+    {console.log('auth' , isAuthenticated)}
 
 
        <section className="h-screen">

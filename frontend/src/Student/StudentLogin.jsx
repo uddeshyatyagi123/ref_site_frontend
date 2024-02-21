@@ -9,7 +9,7 @@ import StudentUseAuth from '../StudentPrivateRoute/StudentUseAuth';
 
 function StudentLogin() {
 
-  const history = useNavigate();
+  const navigate = useNavigate();
 
 
   const { isAuthenticatedStudent, setIsAuthenticatedStudent, loadingStudent, setLoadingStudent } = StudentUseAuth();
@@ -22,19 +22,25 @@ function StudentLogin() {
       // console.log('Form Data for submission:', formData);
       console.log('val', val)
       setLoadingStudent(true);
-
+axios.defaults.withCredentials = true;
         axios({
           method : 'post' , 
           url : `https://referral-site.onrender.com/api/studentlogin`,
           data : {
-            username : val.username,
-            password :val.password,
-            rememberMe:"true"
-          }
+            username : 'Uddeshya_tyagi1',
+            password :'1234567890',
+            rememberMe : true
+          },
+          headers:{
+            'Content-Type' : 'application/json',
+          },
+          // withCredentials : true
         }).then(res => {console.log(res.data , 'User registered');
+        localStorage.clear();
+        localStorage.setItem('username',val.username)
         setIsAuthenticatedStudent(true);
         setLoadingStudent(false);
-        // history('/refree/refreelogin');
+        // navigate('/refree/refreelogin');
         console.log('hello world')
       })
         .catch(err => console.log('Error:' , err))
@@ -46,7 +52,7 @@ function StudentLogin() {
   return (
     <>
 {console.log( 'errors', errors)}
-
+{console.log('authn',isAuthenticatedStudent)}
 
 <section className="h-screen">
 <div className="h-full">
@@ -142,6 +148,7 @@ function StudentLogin() {
  </div>
 </div>
 </section>
+<Link to = '/student/studentdashboard'>dashboard</Link>
     </>
   )
 }
