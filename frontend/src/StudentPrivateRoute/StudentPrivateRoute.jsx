@@ -1,5 +1,6 @@
 import { Navigate, Outlet, useNavigate, useOutlet } from 'react-router-dom'
 import StudentUseAuth from './StudentUseAuth';
+import StudentDashboard from '../Student/StudentDashboard';
 const StudentPrivateRoute = () => {
   const { isAuthenticatedStudent } = StudentUseAuth();
 

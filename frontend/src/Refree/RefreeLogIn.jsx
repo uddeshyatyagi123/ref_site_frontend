@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import useAuth from '../PrivateRoute/useAuth';
+import Cookies from 'js-cookie';
 
 function RefreeLogIn() {
   const navigate = useNavigate();
@@ -27,8 +28,8 @@ function RefreeLogIn() {
             username : val.username,
             password :val.password,
             rememberMe:"true"
-          }
-        },{
+          },
+
           withCredentials : true 
         }).then(res => {console.log(res.data , 'User registered');
         setIsAuthenticated(true);
@@ -40,12 +41,7 @@ function RefreeLogIn() {
         console.log('hello world')   
       })
         .catch(err => console.log('Error:' , err))
-
-        useEffect(() => {
-          if (isAuthenticated) {
-            navigate('/refree/refreedashboard');
-          }
-        }, [isAuthenticated, navigate]);
+        Cookies.set('status','true');
     }
 
   return (

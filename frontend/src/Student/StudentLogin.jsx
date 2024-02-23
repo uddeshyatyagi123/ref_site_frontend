@@ -1,9 +1,10 @@
 import axios from 'axios';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { TEInput, TERipple } from "tw-elements-react";
 import StudentUseAuth from '../StudentPrivateRoute/StudentUseAuth';
+import Cookies from 'js-cookie';
 
 
 
@@ -13,6 +14,9 @@ function StudentLogin() {
 
 
   const { isAuthenticatedStudent, setIsAuthenticatedStudent, loadingStudent, setLoadingStudent } = StudentUseAuth();
+
+
+  const [cookiedata,setCookiedata] = useState(false)
     const{register,handleSubmit , formState : {errors}, } = useForm()
 
     const data = value => console.log('data' ,value);
@@ -22,7 +26,7 @@ function StudentLogin() {
       // console.log('Form Data for submission:', formData);
       console.log('val', val)
       setLoadingStudent(true);
-axios.defaults.withCredentials = true;
+// axios.defaults.withCredentials = true;
         axios({
           method : 'post' , 
           url : `https://referral-site.onrender.com/api/studentlogin`,
@@ -34,26 +38,36 @@ axios.defaults.withCredentials = true;
           headers:{
             'Content-Type' : 'application/json',
           },
-          // withCredentials : true
+          withCredentials : true
         }).then(res => {console.log(res.data , 'User registered');
         localStorage.clear();
         localStorage.setItem('username',val.username)
+        Cookies.set('status','true');
+
+
         setIsAuthenticatedStudent(true);
         setLoadingStudent(false);
-        // navigate('/refree/refreelogin');
+        console.log('before')
+        navigate('/student/studentdashboard');
+        console.log('after')
         console.log('hello world')
       })
         .catch(err => console.log('Error:' , err))
-
-
-
     }
+  
+// useEffect(()=>{
+//   const cookie = Cookies.get('status')
+//   setCookiedata(cookie)
+//   cookiedata?setIsAuthenticatedStudent(true)&&        navigate('/student/studentdashboard')  :setIsAuthenticatedStudent(false)
+// })
+
 
   return (
+    
     <>
 {console.log( 'errors', errors)}
 {console.log('authn',isAuthenticatedStudent)}
-
+{/* {  cookiedata?setIsAuthenticatedStudent(true)&&        navigate('/student/studentdashboard')  :setIsAuthenticatedStudent(false)} */}
 <section className="h-screen">
 <div className="h-full">
  {/* <!-- Left column container with background--> */}
