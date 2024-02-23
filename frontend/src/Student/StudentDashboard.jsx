@@ -1,29 +1,50 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Refrel from './Refrel';
 import ProfileUpdate from './ProfileUpdate';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import StudentUseAuth from '../StudentPrivateRoute/StudentUseAuth';
 
 function StudentDashboard() {
+  const { isAuthenticatedStudent, setIsAuthenticatedStudent, loadingStudent, setLoadingStudent } = StudentUseAuth();
 
   var username = localStorage.getItem('username');
 
     const [selectedComponent, setSelectedComponent] = useState('refrel');
+    useEffect(() => {
+      // Read data from a cookie
+      const myData = Cookies.get('status');
+      console.log('Data from cookie:', myData);
+      if(myData){
+        setIsAuthenticatedStudent(true)
+      }
+    }, []);
 
-    axios({
-      method : 'GET' , 
-      url : `https://https://referral-site.onrender.com/api/referrals`,
 
+    const logout = () => {
+      axios({
+        method : 'GET' , 
+        url : `https://referral-site.onrender.com/api/logout`,
+        headers:{
+          'Content-Type' : 'application/json',
+        },
+        withCredentials : true
+      })
+      .then(response => {
+        console.log('Data logout:', response.data),
+        console.log('Button clicked!');
+        Cookies.set('status','false');
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      })
+    };
+   
+    useEffect(()=>{
+      const cookiedata = Cookies.get('status')
+      cookiedata?setIsAuthenticatedStudent(true)&&        navigate('/student/studentlogin')  :setIsAuthenticatedStudent(false)
     })
-    .then(response => {
-      // Handle successful response
-      console.log('Data from API:', response.data);
-    })
-    .catch(error => {
-      // Handle error
-      console.error('Error fetching data:', error);
-    })
-
     const renderComponent = () => {
       switch (selectedComponent) {
         case 'refrel':
@@ -54,10 +75,17 @@ function StudentDashboard() {
           >
             Profile Update
           </div>
-         
+          <button
+          style={{ backgroundColor: '#F0ECE5' }}
+          className='bg-blue-500 cursor-pointer text-black p-3 rounded mx-12 mb-4 sm:mb-8 md:mb-16 lg:mb-32 xl:mb-64'
+          onClick={logout}
+        >
+            logout
+          </button>
         </div>
         <div className='right-panel  overflow-scroll h-screen w-screen'>
           {/* Render the selected component */}
+          
           {renderComponent()}
         </div>
       </div>
