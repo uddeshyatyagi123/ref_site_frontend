@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react'
 import Refrel from './Refrel';
 import ProfileUpdate from './ProfileUpdate';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import StudentUseAuth from '../StudentPrivateRoute/StudentUseAuth';
 
 function StudentDashboard() {
   const { isAuthenticatedStudent, setIsAuthenticatedStudent, loadingStudent, setLoadingStudent } = StudentUseAuth();
-
+   const navigate = useNavigate()
   var username = localStorage.getItem('username');
 
     const [selectedComponent, setSelectedComponent] = useState('refrel');
@@ -35,6 +35,7 @@ function StudentDashboard() {
         console.log('Data logout:', response.data),
         console.log('Button clicked!');
         Cookies.set('status','false');
+        navigate('/student/studentdashboard')
       })
       .catch(error => {
         console.error('Error fetching data:', error);
