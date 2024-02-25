@@ -37,7 +37,7 @@ function RefreeLogIn() {
         localStorage.clear();
         localStorage.setItem('username',val.username)
 
-        // navigate('/refree/refreedashboard');
+        navigate('/refree/refreedashboard');
         console.log('hello world')   
       })
         .catch(err => console.log('Error:' , err))

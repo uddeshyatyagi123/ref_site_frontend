@@ -6,7 +6,7 @@ function Refrel() {
 
   const [referrals, setReferrals] = useState([]);
 
-
+  var username = localStorage.getItem('username');
   useEffect(()=>{
     axios({
       method : 'GET' , 
@@ -37,8 +37,9 @@ function Refrel() {
               <Card2
                 companyName={referral.company_name}
                 position={referral.qualifications}
-                cost={referral.price
-                }
+                cost={referral.price}
+                refreeusername   = {referral.posted_by}
+                studentusername = {username}
                 // Add more props based on your actual data structure
               />
             </li>
