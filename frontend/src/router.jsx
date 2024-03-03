@@ -9,10 +9,11 @@ import StudentDashboard from './Student/StudentDashboard'
 // import PrivateRoutes from './PrivateRoute/PrivateRoutes '
 import StudentPrivateRoute from './StudentPrivateRoute/StudentPrivateRoute'
 import PrivateRoutes from './PrivateRoute/PrivateRoutes'
+import HomePage from './Home'
 
 const router = createBrowserRouter(
     createRoutesFromElements(
-        <Route path = '/' element = ''>
+        <Route path = '/' element = {<HomePage/>}>
         <Route path = 'refree' element =  ''>
             <Route path = 'refreesignup' element = {<RefreeSignUp/>}/>
             <Route path = 'refreelogin' element = {<RefreeLogIn/>}/>
