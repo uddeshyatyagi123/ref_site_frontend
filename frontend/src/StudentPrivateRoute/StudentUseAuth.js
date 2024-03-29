@@ -12,10 +12,10 @@ const StudentUseAuth = () => {
   //     console.log(token)
   //   }
   // }, []);
-  useEffect(()=>{
-    const cookiedata = Cookies.get('status')
-    cookiedata?setIsAuthenticatedStudent(true) :setIsAuthenticatedStudent(false)
-  })
+  // useEffect(()=>{
+  //   const cookiedata = Cookies.get('status')
+  //   cookiedata?setIsAuthenticatedStudent(true) :setIsAuthenticatedStudent(false)
+  // })
   
 
   return { isAuthenticatedStudent, setIsAuthenticatedStudent, loadingStudent, setLoadingStudent };

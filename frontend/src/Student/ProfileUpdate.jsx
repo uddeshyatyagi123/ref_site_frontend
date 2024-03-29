@@ -1,80 +1,108 @@
-import React from 'react'
-import { TEInput, TERipple } from "tw-elements-react";
-import { useForm } from 'react-hook-form';
-import axios from 'axios';
-
+import React from "react";
+import { useForm } from "react-hook-form";
+import axios from "axios";
+import { Card, Input, Button } from "@nextui-org/react";
 
 function ProfileUpdate() {
-var username = localStorage.getItem('username')
-  const{register,handleSubmit , formState : {errors}, getValues } = useForm()
+  var username = localStorage.getItem("username");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    getValues,
+  } = useForm();
 
   const Submitprofile = (val) => {
     // const formData = getValues();
     // console.log('Form Data for submission:', formData);
-    console.log('val', val)
-      
-      axios({
-        method : 'patch' , 
-        url : `https://referral-site.onrender.com/api/profile`,
-        data : {
-          username:username,
-          name: val.name,
-          Degree: val.Degree,
-          resumelink : val.resumelink
-        },
+    console.log("val", val);
 
-        withCredentials : true 
-      }).then(res => {console.log(res.data , 'User updated');  
+    axios({
+      method: "patch",
+      url: `https://referral-site.onrender.com/api/profile`,
+      data: {
+        username: username,
+        name: val.name,
+        Degree: val.Degree,
+        resumelink: val.resumelink,
+      },
+
+      withCredentials: true,
     })
-      .catch(err => console.log('Error:' , err))
-  }
+      .then((res) => {
+        console.log(res.data, "User updated");
+      })
+      .catch((err) => console.log("Error:", err));
+  };
 
   return (
     <>
-    
-    <div className='flex items-center justify-center h-screen'>
-    <div className='h-1/2 w-1/2  '>
-    <form onSubmit={handleSubmit(Submitprofile)}>
-      <TEInput
-                   {...register('name' , {required: {value:false , message : 'Enter your full name'} })}
-                   type="name"
-                   label="Your full name"
-                   size="lg"
-                   className="mb-4"
-                 ></TEInput>
-                               {errors.name && <p className='text-red-500 my-0'>{errors.name.message}</p>}
-   
-               <TEInput
-                   {...register('Degree' , {required: {value:false , message : 'Degree'} })}
-                   type="Degree"
-                   label="Your degree"
-                   size="lg"
-                   className="mb-4"
-                 ></TEInput>
-                               {errors.Degree && <p className='text-red-500 my-0'>{errors.Degree.message}</p>}
-               <TEInput
-                   {...register('resume' , {required: {value:false , message : 'resume link'} })}
-                   type="resume"
-                   label="resume link"
-                   size="lg"
-                   className="mb-4"
-                 ></TEInput>
-                               {errors.resume && <p className='text-red-500 my-0'>{errors.resume.message}</p>}
-
-                           <TERipple rippleColor="light">
-           <button
-             type="submit"
-             
-             className="inline-block rounded bg-primary px-7 pb-2.5 pt-3 text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
-           >
-             Update
-           </button>
-         </TERipple>             
-                               </form>
-                               </div>
-                               </div>
+      <div className="lg:pl-[15rem] min-h-screen flex flex-col items-center justify-center">
+        <div className="w-2/3 h-[calc(100vh-2em)] flex flex-col items-center justify-evenly">
+          <div className="flex flex-col gap-2 items-center">
+            <h1 className="sm:text-[2.5em] text-[1em] font-bold text-center">
+              Spotlight Your Skills, Amplify Your Referrals
+            </h1>
+            <p className="sm:text-[1.5em] text-center text-[1em] w-2/3">
+              Showcase your expertise with a profile that shines, and watch the referrals roll in!
+            </p>
+          </div>
+          <Card className="p-4 border-sky-700 border-1 bg-gradient-to-br from-sky-300 to-sky-100 w-2/3">
+            <form
+              onSubmit={handleSubmit(Submitprofile)}
+              className="flex flex-col gap-4 font-lg"
+            >
+              <Input
+                {...register("name", {
+                  required: { value: true },
+                })}
+                type="name"
+                label="Your full name"
+                labelPlacement="outside"
+                classNames={{ label: "font-bold" }}
+                placeholder="Enter your full name"
+                errorMessage={errors.name && "Name required"}
+              />
+              <Input
+                {...register("Degree", {
+                  required: { value: true },
+                })}
+                type="Degree"
+                label="Degree"
+                labelPlacement="outside"
+                classNames={{ label: "font-bold" }}
+                placeholder="Enter your degree"
+                errorMessage={errors.Degree && "Degree required"}
+              />
+              <Input
+                {...register("resume", {
+                  required: { value: true },
+                })}
+                type="resume"
+                label="Resume link"
+                labelPlacement="outside"
+                classNames={{ label: "font-bold" }}
+                placeholder="Enter your resume link"
+                errorMessage={errors.resume && "Link required"}
+              />
+              <Button
+                type="submit"
+                variant="shadow"
+                radius="full"
+                className="bg-blue-400 font-bold self-center"
+              >
+                Update
+              </Button>
+            </form>
+          </Card>
+        </div>
+        <div className="sm:text-[1.2em] text-[0.8em] text-center border-t-2 mt-auto w-full">
+          Give your profile a makeover abd watch those referral doors swing wide
+          open...
+        </div>
+      </div>
     </>
-  )
+  );
 }
 
-export default ProfileUpdate
+export default ProfileUpdate;

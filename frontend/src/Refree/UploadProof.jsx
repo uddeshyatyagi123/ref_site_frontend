@@ -1,52 +1,73 @@
-import React, { useState } from 'react';
-import Card from './Card';
+import React, { useState } from "react";
+import { Button, Card, Input } from "@nextui-org/react";
 
 function UploadProof() {
-  const [driveLink, setDriveLink] = useState('');
-  const [email, setEmail] = useState('');
+  const [driveLink, setDriveLink] = useState("");
+  const [email, setEmail] = useState("");
 
   const handleUpload = () => {
-    console.log('Uploading:', driveLink, email);
+    console.log("Uploading:", driveLink, email);
   };
 
   return (
-    <div className='flex flex-col items-center mt-2'>
-      <h2 className="text-center mt-20 text-2xl font-semibold ">
-        Don't just be a <em className='text-red-500'>good</em> referee, be a{' '}
-        <em className='text-red-500'>great</em> one
-      </h2>
-      <h2 className="text-center font-medium mt-20 text-xl">
-        Upload your documents and unleash your full potential
-      </h2>
+    <div className="lg:pl-[15rem] min-h-screen flex flex-col">
+      <div className="flex flex-col justify-center items-center gap-[3em] md:pt-16 pt-8">
+        <h1 className="sm:text-[2.5em] text-[1em] font-bold">
+          Don't just be a <span className="italic text-red-600">good</span>{" "}
+          refree, be a <span className="italic text-sky-600">great</span> one!
+        </h1>
+        <p className="sm:text-[1.5em] text-center text-[0.8em] font-bold">
+          Upload your documents and unleash your full potential.
+        </p>
 
-      <div  style={{backgroundColor:'#FFE7C1'}} className='w-1/2 mt-4 p-6 m-4 border border-gray-300 rounded-lg shadow-md'>
-        <div className='mb-2'>
-          <label htmlFor='driveLink' className='block text-gray-600 mb-1'>
-            Drive link
-          </label>
-          <input
-            type='text'
-            id='driveLink'
+        <Card className="p-8 flex flex-col gap-4 border-sky-700 border-1 bg-gradient-to-br from-sky-300 to-sky-100 w-1/2">
+          <Input
+            type="text"
+            id="driveLink"
+            radius="full"
+            placeholder="Enter the drive link"
+            label="Drive Link"
+            labelPlacement="outside"
             value={driveLink}
+            classNames={{label:"font-bold"}}
+            isRequired
             onChange={(e) => setDriveLink(e.target.value)}
-            className='border-2 rounded-xl p-2 w-full focus:outline-none focus:border-blue-500'
           />
-        </div>
-        <div className='mb-4'>
-          <label htmlFor='email' className='block text-gray-600 mb-1'>
-            Email
-          </label>
-          <input
-            type='text'
-            id='email'
+          <Input
+            type="text"
+            id="email"
+            radius="full"
+            placeholder="Enter your e-mail"
+            label="Email"
+            labelPlacement="outside"
             value={email}
+            classNames={{label:"font-bold"}}
+            isRequired
             onChange={(e) => setEmail(e.target.value)}
-            className='border-2 rounded-xl p-2 w-full focus:outline-none focus:border-blue-500'
           />
+          <Button
+            color="primary"
+            variant="shadow"
+            radius="full"
+            className="self-center mt-4 font-bold"
+            onClick={handleUpload}
+          >
+            Upload
+          </Button>
+        </Card>
+
+        <div className="w-1/2 flex justify-between">
+          <Button className="bg-white border-1 border-blue-400 shadow-blue-400 shadow-lg text-gray-500">
+            Total Earnings:
+          </Button>
+          <Button color="primary" variant="shadow">
+            Withdraw
+          </Button>
         </div>
-        <div className='mt-4 bg-blue-500 cursor-pointer hover:bg-blue-800 rounded-full p-2 text-center text-white font-semibold' onClick={handleUpload}>
-          Upload
-        </div>
+      </div>
+      <div className="sm:text-[1em] text-[0.6em] text-center border-t-2 mt-auto">
+        Don't wait completing your profile and proofs brings you closer to the
+        rewards you deserve.
       </div>
     </div>
   );
