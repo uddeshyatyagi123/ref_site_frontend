@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import useAuth from "../PrivateRoute/useAuth";
 import Cookies from "js-cookie";
-import { Button, Input } from "@nextui-org/react";
+import { Button, Input } from "@heroui/react";
 import { CutEyeIcon } from "../assets/Icons/CutEyeIcon";
 import { EyeIcon } from "../assets/Icons/EyeIcon";
 

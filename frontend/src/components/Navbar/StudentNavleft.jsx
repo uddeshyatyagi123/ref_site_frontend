@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, ScrollShadow } from "@nextui-org/react";
+import { Button, ScrollShadow } from "@heroui/react";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";

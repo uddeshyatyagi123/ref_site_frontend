@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Card, Input } from "@nextui-org/react";
+import { Button, Card, Input } from "@heroui/react";
 
 function UploadProof() {
   const [driveLink, setDriveLink] = useState("");

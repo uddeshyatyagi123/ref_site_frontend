@@ -1,5 +1,5 @@
+import { ScrollShadow } from "@heroui/react";
 import React from "react";
-import { ScrollShadow } from "@nextui-org/react";
 import { NavLink } from "react-router-dom";
 
 const RefreeNavleft = () => {

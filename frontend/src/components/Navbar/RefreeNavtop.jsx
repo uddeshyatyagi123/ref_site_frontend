@@ -7,7 +7,7 @@ import {
   NavbarMenu,
   NavbarContent,
   Avatar,
-} from "@nextui-org/react";
+} from "@heroui/react";
 import { NavLink } from "react-router-dom";
 
 const RefreeNavtop = () => {

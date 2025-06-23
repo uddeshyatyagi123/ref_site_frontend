@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import StudentUseAuth from "../StudentPrivateRoute/StudentUseAuth";
 import Cookies from "js-cookie";
-import { Button, Input } from "@nextui-org/react";
+import { Button, Input } from "@heroui/react";
 import { CutEyeIcon } from "../assets/Icons/CutEyeIcon";
 import { EyeIcon } from "../assets/Icons/EyeIcon";
 

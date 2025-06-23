@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { Card, Input, Button } from "@nextui-org/react";
+import { Card, Input, Button } from "@heroui/react";
 
 function ProfileUpdate() {
   var username = localStorage.getItem("username");

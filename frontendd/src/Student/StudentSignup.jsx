@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { Button, Divider, Input } from "@nextui-org/react";
+import { Button, Divider, Input } from "@heroui/react";
 import { CutEyeIcon } from "../assets/Icons/CutEyeIcon";
 import { EyeIcon } from "../assets/Icons/EyeIcon";
 import bro from "../assets/rafiki.png";

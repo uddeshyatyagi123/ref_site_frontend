@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "@nextui-org/react";
+import { Button } from "@heroui/react";
 import { Link } from "react-router-dom";
 import bro from "../assets/bro.jpg";
 

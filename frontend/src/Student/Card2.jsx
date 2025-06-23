@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Button, Card, Input } from "@nextui-org/react";
+import { Button, Card, Input } from "@heroui/react";
 function Card2({ companyName, position, cost, refreeusername }) {
   var username = localStorage.getItem("username");
 

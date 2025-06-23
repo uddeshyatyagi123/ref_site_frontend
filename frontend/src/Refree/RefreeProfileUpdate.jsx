@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { Button, Card, Input } from "@nextui-org/react";
+import { Button, Card, Input } from "@heroui/react";
 import { Link } from "react-router-dom";
 
 const RefreeProfileUpdate = () => {
