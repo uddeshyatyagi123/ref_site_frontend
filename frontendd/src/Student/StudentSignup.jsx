@@ -12,6 +12,7 @@ function StudentSignup() {
   const [userName, setUserName] = useState("");
   const [isVisible, setIsVisible] = useState(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
+  const backendURL  = import.meta.env.VITE_BACKEND_URL;
 
   const {
     register,
@@ -32,7 +33,7 @@ function StudentSignup() {
     // console.log('Form Data before submission:', formData);
     axios({
       method: "post",
-      url: `https://referral-site.onrender.com/api/studentregister`,
+      url: `${backendURL }/api/studentregister`,
       data: {
         username: userName,
         email: email,
@@ -48,7 +49,7 @@ function StudentSignup() {
     console.log("val", val);
     axios({
       method: "post",
-      url: `https://referral-site.onrender.com/api/studentverify`,
+      url: `${backendURL }/api/studentverify`,
       data: {
         username: val.username,
         email: val.email,
@@ -63,7 +64,7 @@ function StudentSignup() {
 
     //     try{
 
-    //         const res = await axios.post(`https://referral-site.onrender.com/api/studentverify`,
+    //         const res = await axios.post(`${backendURL }/api/studentverify`,
     //         JSON.stringify(
     //             {username : val.username,
     // email: val.email,

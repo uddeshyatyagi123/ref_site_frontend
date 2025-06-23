@@ -4,11 +4,12 @@ import axios from "axios";
 
 function Refrel() {
   const [referrals, setReferrals] = useState([]);
+  const backendURL  = import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {
     axios({
       method: "GET",
-      url: `https://referral-site.onrender.com/api/referrals`,
+      url: `${backendURL }/api/referrals`,
       headers: {
         "Content-Type": "application/json",
       },

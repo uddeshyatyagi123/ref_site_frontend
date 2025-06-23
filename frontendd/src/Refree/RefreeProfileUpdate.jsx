@@ -12,15 +12,17 @@ const RefreeProfileUpdate = () => {
     formState: { errors },
     getValues,
   } = useForm();
+  const backendURL  = import.meta.env.VITE_BACKEND_URL;
 
   const Submitprofile = (val) => {
     // const formData = getValues();
     // console.log('Form Data for submission:', formData);
     console.log("val", val);
+    
 
     axios({
       method: "post",
-      url: `https://referral-site.onrender.com/api/addreferral`,
+      url: `${backendURL }/api/addreferral`,
       data: {
         posted_by: username,
         company_name: val.Company,

@@ -11,6 +11,7 @@ function ProfileUpdate() {
     formState: { errors },
     getValues,
   } = useForm();
+  const backendURL  = import.meta.env.VITE_BACKEND_URL;
 
   const Submitprofile = (val) => {
     // const formData = getValues();
@@ -19,7 +20,7 @@ function ProfileUpdate() {
 
     axios({
       method: "patch",
-      url: `https://referral-site.onrender.com/api/profile`,
+      url: `${backendURL }/api/profile`,
       data: {
         username: username,
         name: val.name,

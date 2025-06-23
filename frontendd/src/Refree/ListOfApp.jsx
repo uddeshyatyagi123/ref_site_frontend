@@ -4,12 +4,14 @@ import axios from "axios";
 
 function ListOfApp() {
   const [referrals, setReferrals] = useState([]);
+  const backendURL  = import.meta.env.VITE_BACKEND_URL;
+
 
   var username = localStorage.getItem("username");
   useEffect(() => {
     axios({
       method: "post",
-      url: `https://referral-site.onrender.com/api/myreferrals`,
+      url: `${backendURL }/api/myreferrals`,
       data: {
         asked_to: username,
       },

@@ -4,11 +4,14 @@ import { NavLink } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
 
+
+const backendURL  = import.meta.env.VITE_BACKEND_URL;
+
 const StudentNavleft = () => {
   const logout = () => {
     axios({
       method: "GET",
-      url: `https://referral-site.onrender.com/api/logout`,
+      url: `${backendURL }/api/logout`,
       headers: {
         "Content-Type": "application/json",
       },

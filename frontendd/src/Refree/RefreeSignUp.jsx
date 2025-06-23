@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import girl from "../assets/refereesignupgirl.png";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Button, Divider, Input } from "@nextui-org/react";
 import { CutEyeIcon } from "../assets/Icons/CutEyeIcon";
@@ -14,6 +14,10 @@ function RefreeSignUp() {
   const [userName, setUserName] = useState("");
   const [isVisible, setIsVisible] = useState(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
+  const backendURL  = import.meta.env.VITE_BACKEND_URL;
+
+    const navigate = useNavigate();
+
 
   const {
     register,
@@ -28,7 +32,7 @@ function RefreeSignUp() {
     console.log("val", val);
     axios({
       method: "post",
-      url: `https://referral-site.onrender.com/api/referrerverify`,
+      url: `${backendURL }/api/referrerverify`,
       data: {
         username: val.username,
         email: val.email,
@@ -38,7 +42,10 @@ function RefreeSignUp() {
         name: val.name,
       },
     })
-      .then((res) => console.log(res.data, "User registered"))
+      .then((res) => {console.log(res.data, "User registered")
+        navigate("/refree/applications");
+
+      })
       .catch((err) => console.log("Error:", err));
   };
 
@@ -48,20 +55,22 @@ function RefreeSignUp() {
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };
-
+  
   const getOtp = () => {
+    console.log(backendURL )
     // const formData = getValues();
     // console.log('Form Data before submission:', formData);
     axios({
       method: "post",
-      url: `https://referral-site.onrender.com/api/referrerregister`,
+      url: `${backendURL }/api/referrerregister`,
       data: {
         username: userName,
         email: email,
       },
+      withCredentials: true
     })
       .then((res) => console.log(res.data, "otp sended"))
-      .catch((err) => console.log("OTPERROR:", err));
+      .catch((err) => {console.log("OTPERROR:", err,'url:',backendURL ) });
   };
 
   return (

@@ -22,6 +22,7 @@ function RefreeLogIn() {
   } = useForm();
 
   const data = (value) => console.log("data", value);
+  const backendURL  = import.meta.env.VITE_BACKEND_URL;
 
   const Submitdata = (val) => {
     // const formData = getValues();
@@ -31,7 +32,7 @@ function RefreeLogIn() {
 
     axios({
       method: "post",
-      url: `https://referral-site.onrender.com/api/referrerlogin`,
+      url: `${backendURL}/api/referrerlogin`,
       data: {
         username: val.username,
         password: val.password,
@@ -47,7 +48,7 @@ function RefreeLogIn() {
         localStorage.clear();
         localStorage.setItem("username", val.username);
 
-        navigate("/refree/refreedashboard");
+        navigate("/refree/applications");
         console.log("hello world");
       })
       .catch((err) => console.log("Error:", err));
@@ -119,7 +120,7 @@ function RefreeLogIn() {
               </div>
             </div>
 
-            <Button variant="shadow" color="primary" className="self-center mt-4">
+            <Button type = 'submit' variant="shadow" color="primary" className="self-center mt-4">
               Login
             </Button>
 

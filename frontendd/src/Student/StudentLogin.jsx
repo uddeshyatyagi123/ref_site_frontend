@@ -12,6 +12,7 @@ function StudentLogin() {
   const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
+  const backendURL  = import.meta.env.VITE_BACKEND_URL;
 
   const {
     isAuthenticatedStudent,
@@ -37,7 +38,7 @@ function StudentLogin() {
     // axios.defaults.withCredentials = true;
     axios({
       method: "post",
-      url: `https://referral-site.onrender.com/api/studentlogin`,
+      url: `${backendURL }/api/studentlogin`,
       data: {
         username: "Uddeshya_tyagi1",
         password: "1234567890",

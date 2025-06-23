@@ -3,11 +3,12 @@ import axios from "axios";
 import { Button, Card, Input } from "@nextui-org/react";
 function Card2({ companyName, position, cost, refreeusername }) {
   var username = localStorage.getItem("username");
+  const backendURL  = import.meta.env.VITE_BACKEND_URL;
 
   const submit = () => {
     axios({
       method: "post",
-      url: `https://referral-site.onrender.com/api/askreferral`,
+      url: `${backendURL }/api/askreferral`,
       data: {
         asked_by: username,
         asked_to: refreeusername,
