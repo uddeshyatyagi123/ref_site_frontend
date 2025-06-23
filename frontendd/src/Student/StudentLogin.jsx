@@ -143,7 +143,7 @@ function StudentLogin() {
               <p className="mt-4 text-sm font-semibold self-center">
                 Don't have an account?{" "}
                 <Link
-                  to="/student/studentsignup"
+                  to="/studentsignup"
                   className="text-danger transition duration-150 ease-in-out hover:text-danger-600 focus:text-danger-600 active:text-danger-700"
                 >
                   Register

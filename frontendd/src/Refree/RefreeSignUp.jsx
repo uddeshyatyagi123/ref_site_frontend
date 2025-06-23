@@ -43,7 +43,7 @@ function RefreeSignUp() {
       },
     })
       .then((res) => {console.log(res.data, "User registered")
-        navigate("/refree/applications");
+        navigate("/refree");
 
       })
       .catch((err) => console.log("Error:", err));
@@ -95,7 +95,7 @@ function RefreeSignUp() {
             <p className="sm:text-[1.2em] text-[1em] font-semibold">
               Have an account?{" "}
               <Link
-                to="/refree/refreelogin"
+                to="/refreelogin"
                 className="text-danger transition duration-150 ease-in-out hover:text-danger-600 focus:text-danger-600 active:text-danger-700"
               >
                 Login

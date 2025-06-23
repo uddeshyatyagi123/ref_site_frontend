@@ -48,7 +48,7 @@ function RefreeLogIn() {
         localStorage.clear();
         localStorage.setItem("username", val.username);
 
-        navigate("/refree/applications");
+        navigate("/refree");
         console.log("hello world");
       })
       .catch((err) => console.log("Error:", err));
@@ -127,7 +127,7 @@ function RefreeLogIn() {
             <p className="mt-4 text-sm font-semibold self-center">
               Don't have an account?{" "}
               <Link
-                to="/refree/refreesignup"
+                to="/refreesignup"
                 className="text-danger transition duration-150 ease-in-out hover:text-danger-600 focus:text-danger-600 active:text-danger-700"
               >
                 Register

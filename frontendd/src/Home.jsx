@@ -42,7 +42,7 @@ const HomePage = () => {
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <Link to="/refree/refreesignup">
+          <Link to="/refreesignup">
             <motion.button
               className="py-3 px-6 bg-indigo-500 text-white rounded-md w-full focus:outline-none"
               whileHover="hover"
@@ -52,7 +52,7 @@ const HomePage = () => {
               Become a Referee
             </motion.button>
           </Link>
-          <Link to="/student/studentsignup">
+          <Link to="/studentsignup">
             <motion.button
               className="py-3 px-6 bg-green-500 text-white rounded-md w-full focus:outline-none"
               whileHover="hover"

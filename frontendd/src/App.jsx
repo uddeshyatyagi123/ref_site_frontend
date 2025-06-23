@@ -14,6 +14,9 @@ import ListOfApp from "./Refree/ListOfApp";
 import Profile from "./Refree/Profile";
 import ProfileUpdate from "./Student/ProfileUpdate";
 import RefreeProfileUpdate from "./Refree/RefreeProfileUpdate";
+import ProtectedRoute from "./PrivateRoute/ProtectedRoute";
+import RefreeNavtop from "../../frontend/src/components/Navbar/RefreeNavtop";
+import RefreeNavleft from "./components/Navbar/RefreeNavleft";
 
 const App = () => {
   const { isAuthenticated, setIsAuthenticated, loading, setLoading } =
@@ -23,27 +26,48 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />}></Route>
-        <Route path="refree" element="">
-          <Route element={<MainLayout />}>
-            <Route path="refreesignup" element={<RefreeSignUp />} />
-            <Route path="refreelogin" element={<RefreeLogIn />} />
-            <Route element={<PrivateRoutes />}>
-              <Route path="applications" element={<ListOfApp />} />
+        <Route path="refreesignup" element={<RefreeSignUp />} />
+        <Route path="refreelogin" element={<RefreeLogIn />} />
+        <Route path="studentsignup" element={<StudentSignup />} />
+        <Route path="studentlogin" element={<StudentLogin />} />
+
+
+
+        {/* <Route path="refree" element=""> */}
+        {/* refree Dashboard Routes */}
+        <Route
+          path="/refree"
+          element={
+            <ProtectedRoute>
+              <ListOfApp />
+            </ProtectedRoute>
+          }
+        >
+
+          {/* </Route> */}
+              <Route path="applications" element={ <ListOfApp />} />
               <Route path="uploadproofs" element={<UploadProof />} />
               <Route path="profile" element={<Profile />} />
               <Route path="profile/update" element={<RefreeProfileUpdate />} />
-            </Route>
-          </Route>
         </Route>
-        <Route path="student" element="">
-          <Route element={<MainLayout />}>
-            <Route path="studentsignup" element={<StudentSignup />} />
-            <Route path="studentlogin" element={<StudentLogin />} />
-            <Route element={<StudentPrivateRoute />}>
+
+
+
+
+        {/* <Route path="student" element=""> */}
+        {/* student Dashboard Routes */}
+        <Route
+          path="/student"
+          element={
+            <ProtectedRoute>
+              <Refrel />
+            </ProtectedRoute>
+          }
+        >
+
+        {/* </Route> */}
               <Route path="refrel" element={<Refrel />} />
               <Route path="updateprofile" element={<ProfileUpdate />} />
-            </Route>
-          </Route>
         </Route>
       </Routes>
     </BrowserRouter>

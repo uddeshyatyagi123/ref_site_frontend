@@ -87,7 +87,7 @@ function StudentSignup() {
       <p className="sm:text-[1.2em] text-[1em] font-semibold text-center">
         Have an account?{" "}
         <Link
-          to="/student/studentlogin"
+          to="/studentlogin"
           className="text-danger transition duration-150 ease-in-out hover:text-danger-600 focus:text-danger-600 active:text-danger-700"
         >
           Login
