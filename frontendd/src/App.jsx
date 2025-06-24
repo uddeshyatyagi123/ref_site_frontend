@@ -15,7 +15,6 @@ import Profile from "./Refree/Profile";
 import ProfileUpdate from "./Student/ProfileUpdate";
 import RefreeProfileUpdate from "./Refree/RefreeProfileUpdate";
 import ProtectedRoute from "./PrivateRoute/ProtectedRoute";
-import RefreeNavtop from "../../frontend/src/components/Navbar/RefreeNavtop";
 import RefreeNavleft from "./components/Navbar/RefreeNavleft";
 
 const App = () => {
